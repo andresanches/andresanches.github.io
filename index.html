@@ -1,1 +1,49 @@
-Coming soon
+<html lang="en-US">
+  <head>
+    <title>Andre Sanches' Corner</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Oswald">
+    <style>
+      body {
+        background-color: #000;
+        background-image: url("./assets/crater-lake.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        font-family: Oswald;
+      }
+      div.main {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+        width: 300px;
+        height: 120px;
+				transform: translateX(-50%) translateY(-50%);
+        display: flex;
+        align-items : center;
+        justify-content: center;
+      }
+      div.coming-soon {
+				position: absolute;
+        color: #fff;
+        font-size: 25pt;
+      }
+      div.translucent-bg {
+        position: absolute;
+        background-color: #ffffff;
+        opacity: 0.2;
+				width: inherit;
+				height: inherit;
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="main">
+        <div class="coming-soon">Coming soon</div>
+        <div class="translucent-bg"></div>
+      </div>
+    </main>
+  </body>
+</html>
