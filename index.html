@@ -1,51 +1,231 @@
 <html lang="en-US">
   <head>
     <title>Andre Sanches' Corner</title>
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Oswald">
     <style>
       body {
-        background-color: #000;
+        margin: 0;
+        background-color: #111a38; /* deep twilight navy fallback */
         background-image: url("./assets/crater-lake.jpg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-	height: 100vh;
-        font-family: Oswald;
+        background-attachment: fixed; /* image stays put while the page scrolls */
       }
       div.main {
+        max-width: 860px;
+        margin: 48px auto;
+        padding: 0 16px;
+      }
+      div.resume {
+        position: relative;
+        background: linear-gradient(180deg, #fbfcff 0%, #f1f3fa 100%);
+        color: #1e2749; /* deep indigo ink */
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        line-height: 1.5;
+        padding: 48px 56px;
+        box-shadow: 0 12px 40px rgba(13, 20, 48, 0.55);
+        opacity: 86%;
+      }
+      /* Twilight strip along the top edge of the panel */
+      div.resume::before {
+        content: "";
         position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 300px;
-        height: 120px;
-        transform: translateX(-50%) translateY(-50%);
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #8fa3e2 0%, #c997bd 55%, #24336b 100%);
+      }
+
+      /* New Header Styles */
+      div.resume-header {
         display: flex;
-        align-items : center;
-        justify-content: center;
+        justify-content: space-between;
+        align-items: flex-end; /* Aligns contact info to the bottom of the name line */
+        margin-bottom: 20px;
       }
-      div.coming-soon {
-        position: absolute;
-        color: #fff;
-        font-size: 25pt;
+
+      div.resume h1 {
+        font-size: 30px;
+        color: #16204a;
+        margin: 0;
       }
-      div.translucent-bg {
-        position: absolute;
-        background-color: #ffffff;
-        opacity: 0.2;
-        width: inherit;
-        height: inherit;
-        border-radius: 20px;
+      div.resume .contact {
+        font-size: 14px;
+        color: #5b6590; /* slate periwinkle */
+        margin: 0; /* Removed bottom margin to let the header container handle spacing */
+        white-space: nowrap; /* Prevents phone number from wrapping */
+      }
+
+      div.resume h2 {
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #1d2a5c;
+        border-bottom: 2px solid #c997bd; /* twilight mauve rule */
+        padding-bottom: 5px;
+        margin: 20px 0 14px;
+      }
+      div.resume h3 {
+        font-size: 16px;
+        color: #1e2749;
+        margin: 15px 0 2px;
+      }
+      div.resume .meta {
+        font-size: 14px;
+        color: #5b6590;
+        margin: 0 0 8px;
+      }
+      div.resume p {
+        margin: 6px 0;
+      }
+      div.resume ul {
+        margin: 6px 0 14px;
+        padding-left: 22px;
+      }
+      div.resume li {
+        margin-bottom: 7px;
+      }
+      div.resume li::marker {
+        color: #c997bd;
+      }
+      @media (max-width: 640px) {
+        div.main { margin-top: 24px; }
+        div.resume { padding: 30px 24px; }
+
+        /* Stack header vertically on small screens */
+        div.resume-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        div.resume .contact {
+          margin-top: 8px;
+        }
+      }
+
+      /* Print: plain, full-page resume */
+      @media print {
+        body {
+          background: none; /* no photo, no navy fallback */
+        }
+        div.main {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+        }
+        div.resume {
+          background: none;
+          box-shadow: none;
+          padding: 0;
+          line-height: 1.3;
+        }
+        div.resume::before {
+          display: none; /* hide the gradient strip */
+        }
+
       }
     </style>
   </head>
   <body>
     <main>
       <div class="main">
-        <div class="coming-soon">
-          <a href="./assets/Resume Andre Sanches.pdf">Resume</a>
+        <div class="resume">
+          <!-- Wrapped Name and Contact in a header container -->
+          <div class="resume-header">
+            <h1>Andre Sanches</h1>
+            <p class="contact">contact@andresanches.net &nbsp;&nbsp;&nbsp;&nbsp; (650) 603-1742</p>
+          </div>
+
+          <section>
+            <h2>Summary of Qualifications</h2>
+            <p>Experienced in design, development, and deployment of large-scale distributed cloud-based systems. A quick summary of skills includes:</p>
+            <ul>
+              <li>Backend design, implementation, and deployment of distributed services in Java, Scala and Python. Also proficient in frontend technologies (React, Angular) but I primarily focus on backend architecture.</li>
+              <li>DevOps/infrastructure management with Kubernetes using ArgoCD and Kustomization.</li>
+              <li>Proficient in the scripting languages Bash, Powershell, and Python.</li>
+              <li>Proficient in a wide range of AWS product offerings.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Professional Experience</h2>
+
+            <article>
+              <h3>Senior Staff Software Engineer, Turo</h3>
+              <p class="meta">Mountain View, California – June 2022 to present.</p>
+              <p>Worked on several initiatives in the Core Services division of Turo's backend engineering:</p>
+              <ul>
+                <li>Led the AuthN modernization initiative by replacing the legacy bespoke auth stack with standardized OAuth2 using the WSO2 Identity Server open source server.</li>
+                <li>Led an AuthZ initiative to use a ReBAC-based system called SpiceDB for a performance-critical feature that requires sub-10 millisecond lookups for multiple assets owned by multiple users.</li>
+                <li>Worked on decomposing the legacy Java monolith into separate domain-specific Kotlin services. This included not only executing the work but also defining and documenting the practice to empower other engineering teams to perform the task.</li>
+                <li>Worked extensively to improve observability across multiple services in the backend stack.</li>
+              </ul>
+            </article>
+
+            <article>
+              <h3>Staff Software Engineer, Twilio</h3>
+              <p class="meta">San Francisco, California – November 2018 to May 2022.</p>
+              <p>Worked on the Messaging Channels team as one of the core engineers building the WhatsApp for Business product offering, from proof-of-concept to general availability. Contributions include:</p>
+              <ul>
+                <li>Planned, designed, and implemented a Message Templating system for spam control that allows businesses to submit message bodies for pre-approval before initiating conversations with customers.</li>
+                <li>Designed and implemented the backend system that coordinates provisioning computing resources to host and subsequently register WhatsApp numbers. Twilio was the first in the market to automate this process, enabling customers to onboard new customers within minutes instead of the several days/weeks required by the competition.</li>
+                <li>Designed and implemented an internal tool that became the one-stop-shop for managing the operational aspects of the product, such as managing profiles, quality rating, security and template approval.</li>
+                <li>Hardened Kubernetes-based infrastructure for containerized WhatsApp deployments to ensure production stability.</li>
+                <li>Implemented metrics and dashboards that improved observability and on-call engagement in near real time.</li>
+                <li>Languages used for backend dev: Scala, Java, and Python. Kubernetes based infrastructure.</li>
+              </ul>
+            </article>
+
+            <article>
+              <h3>Software Engineer, Microsoft Corporation</h3>
+              <p class="meta">Mountain View, California – October 2015 to August 2018.</p>
+              <p>Worked on the PowerPoint team with multiple responsibilities. Contributions include:</p>
+              <ul>
+                <li>I was a member of the backend engineering team that implemented a continuous integration system using a custom-made large-scale hybrid Cloud/OnPrem infrastructure to build, validate, package and ship various versions of PowerPoint (Win32, mobile and android).</li>
+                <li>I was a member of the feature crew that shipped Slideshow Narration Recording as a built-in product feature, previously only available through the Office Mix plugin.</li>
+                <li>I was a member of the feature crew that shipped several accessibility features throughout the product.</li>
+              </ul>
+            </article>
+
+            <article>
+              <h3>Software Engineer, ZTR Control Systems</h3>
+              <p class="meta">London, Ontario – September 2014 to September 2015.</p>
+              <p>Worked with a team of 8 engineers to design and implement a multi-tenant, cloud-based data ingestion and reporting system for IoT based vehicle fleet telemetry data. The system was implemented in three parts:</p>
+              <ul>
+                <li>A back-end data ingestion system for receiving telemetry data from fleets of vehicles from hundreds of ZTR customers. The system scaled to process over 20 million incoming data points per day. Written in C# for both data ingestion and processing, used Redis as a message queue, Cassandra for short term storage (inflight) and PostgreSQL for long term storage after data aggregation (postflight).</li>
+                <li>A REST API for access to customer data. This API was designed with multi-tenancy at its core, allowing customers to access their data securely using a custom-built Service Token System.</li>
+                <li>The front-end was an AngularJS based ASP.NET reporting application that provided near-real time reports on customer vehicle fleets.</li>
+              </ul>
+            </article>
+
+            <article>
+              <h3>Research Assistant, CSTAR (Canadian Surgical Technologies &amp; Advanced Robotics)</h3>
+              <p class="meta">London, Ontario – August 2013 to September 2014.</p>
+              <ul>
+                <li>Development of tools for the DaVinci surgical robot, used in minimally invasive arthroscopy surgery.</li>
+                <li>Designed and implemented the application that performs data acquisition across multiple sensors and presents the results in a QT based graphical interface. This application is used by most grad students in the lab and makes it easier for less programming-savvy researchers to write software faster by re-using pre-baked modules in their implementations.</li>
+                <li>Wrote custom API wrappers to abstract complex logic from sensor and actuator APIs into easier to use interfaces that meet the stringent CSTAR standards.</li>
+              </ul>
+            </article>
+
+            <article>
+              <h3>Software Development Engineer, IBM</h3>
+              <p class="meta">Hortolandia, Sao Paulo — July 2007 to December 2012.</p>
+              <ul>
+                <li>Worked on the AT&amp;T account as lead developer for an application that aggregates customer billing data from dozens of other applications that are part of the AT&amp;T Universal Billing Platform. This application provides AT&amp;T employees with a single point of control to modify/transform and ship billing data to downstream consumers. I was also part of the team that migrated a platform called Service Assembly from older technologies into the Microsoft .NET framework software stack.</li>
+                <li>Worked on the Sotheby's Realty account as lead engineer/developer of their main website and internal content management system. In this project, I was also the tech lead for a team of 6 practitioners located in both Brazil and India, coordinating the work between teams and reporting to the customer in New Jersey.</li>
+                <li>At the Itaú account I was part of the development team that created a process workflow application used by that banking institution to control order requests from their clients.</li>
+              </ul>
+            </article>
+          </section>
+
+          <section>
+            <h2>Education</h2>
+            <p><strong>UWO – University of Western Ontario</strong><br>Master of Engineering in Software Engineering.</p>
+            <p><strong>UNIRP – Centro Universitario de Rio Preto</strong><br>Bachelor Degree in Computer Science.</p>
+          </section>
         </div>
-        <div class="translucent-bg"></div>
       </div>
     </main>
   </body>
